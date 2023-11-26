@@ -24,6 +24,8 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     const userCollection = client.db("ficrosoft").collection("users");
+    const worksheetCollection = client.db("ficrosoft").collection("worksheet");
+
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
     // Send a ping to confirm a successful connection
@@ -78,6 +80,22 @@ async function run() {
         console.log(error);
       }
     });
+
+    // worksheet 
+    app.post('/worksheet', async (req, res) => {
+      const worksheet = req.body;
+      console.log(worksheet); 
+      const result = await worksheetCollection.insertOne(worksheet);
+      res.send(result);
+  
+      
+
+    });
+
+
+
+
+
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
