@@ -81,17 +81,20 @@ async function run() {
       }
     });
 
-    // worksheet 
-    app.post('/worksheet', async (req, res) => {
+    // worksheet
+    app.post("/worksheet", async (req, res) => {
       const worksheet = req.body;
-      console.log(worksheet); 
+      console.log(worksheet);
       const result = await worksheetCollection.insertOne(worksheet);
       res.send(result);
-  
-      
-
     });
 
+    app.get("/worksheet", async (req, res) => {
+      const email = req.query.email;
+      const query={email: email};
+      const result = await worksheetCollection.find(query).toArray();
+      res.send(result);
+    });
 
 
 
