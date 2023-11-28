@@ -26,6 +26,12 @@ async function run() {
     const userCollection = client.db("ficrosoft").collection("users");
     const worksheetCollection = client.db("ficrosoft").collection("worksheet");
 
+    app.post('/users', async(req, res) =>{ 
+      const user = req.body;
+      const result = await userCollection.insertOne(user);
+      res.send(result);
+    })
+
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
     // Send a ping to confirm a successful connection
