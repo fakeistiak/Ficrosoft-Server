@@ -157,7 +157,7 @@ async function run() {
         res.send(result);
       } catch (error) {
         console.log(error);
-      }
+      };
     });
 
     app.get("/details/:id", async (req, res) => {
